@@ -9,7 +9,7 @@ double calc(const float x, const int precision) {
         temp_value = (temp_value * (-1) * (x * x) * (3 * 3)) / ((2 * i + 1) * (2 * i));
 //        printf("\n%lld", d_triple);
         final_sum += temp_value - temp_clear;
-        printf("%f\n", final_sum);
+//        printf("%f\n", final_sum);
     }
     return final_sum * 0.75;
 }
