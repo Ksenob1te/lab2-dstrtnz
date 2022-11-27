@@ -3,6 +3,7 @@
 
 float calc(const float x, const float precision, int * counter) {
     float eth_res = sinf(x) * sinf(x) * sinf(x);
+    printf("Ethalon result: %f\n", eth_res);
     float temp_clear = -x;
     float temp_value = -x;
     float final_sum = 0;
