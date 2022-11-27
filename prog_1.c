@@ -1,6 +1,6 @@
 #include "stdio.h"
 
-double calc(const float x, const int precision) {
+float calc(const float x, const int precision) {
     float temp_clear = -x;
     float temp_value = -x;
     float final_sum = 0;
