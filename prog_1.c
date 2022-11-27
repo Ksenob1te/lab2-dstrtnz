@@ -1,13 +1,15 @@
 #include "stdio.h"
 
-float calc(const float x, const int precision) {
+double calc(const float x, const int precision) {
+    float temp_clear = -x;
     float temp_value = -x;
-    long long d_triple = 1;
     float final_sum = 0;
     for (int i = 1; i <= precision; ++i) {
-        temp_value = (temp_value * (-1) * (x * x)) / ((2 * i + 1) * (2 * i));
-        d_triple *= 9;
-        final_sum += temp_value * (d_triple - 1);
+        temp_clear = (temp_clear * (-1) * (x * x)) / ((2 * i + 1) * (2 * i));
+        temp_value = (temp_value * (-1) * (x * x) * (3 * 3)) / ((2 * i + 1) * (2 * i));
+//        printf("\n%lld", d_triple);
+        final_sum += temp_value - temp_clear;
+        printf("%f\n", final_sum);
     }
     return final_sum * 0.75;
 }
