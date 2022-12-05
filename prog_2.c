@@ -1,26 +1,31 @@
 #include "stdio.h"
 #include "math.h"
 
-float calc(const float x, const float precision, int * counter) {
+#define MAX_ROW_COUNTER 1000
+
+float calc(const float x, const float precision, int *counter) {
     float eth_res = sinf(x) * sinf(x) * sinf(x);
     printf("Ethalon result: %f\n", eth_res);
     float temp_clear = -x;
     float temp_value = -x;
     float final_sum = 0;
-    for (int i = 1; i <= 1000; ++i) {
+    int i = 1;
+    do {
         temp_clear = (temp_clear * (-1) * (x * x)) / ((2 * i + 1) * (2 * i));
         temp_value = (temp_value * (-1) * (x * x) * (3 * 3)) / ((2 * i + 1) * (2 * i));
         final_sum += temp_value - temp_clear;
-        if (fabsf(eth_res - (final_sum * 3 / 4)) < precision) {
-            *counter = i;
-            return final_sum * 3 / 4;
-        }
+        i += 1;
+    } while ((fabsf(eth_res - (final_sum * 3 / 4)) > precision) && (i < MAX_ROW_COUNTER));
+    if (i >= MAX_ROW_COUNTER) {
+        *counter = -1;
+        return final_sum * 3 / 4;
+    } else {
+        *counter = i;
+        return final_sum * 3 / 4;
     }
-    *counter = -1;
-    return final_sum * 3 / 4;
 }
 
-int main (void) {
+int main(void) {
     float x = 0;
     int status;
     float precision = 0;
